@@ -1,2 +1,2 @@
 # wasabi-blog
-Next.js app
+ソースコード内のデータベースへのURLなどは削除しています。
