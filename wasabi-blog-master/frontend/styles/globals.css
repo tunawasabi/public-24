@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-size: 400px;
+  scroll-behavior: smooth;
+  background-position: 100% calc(100% + 20px);
+  background-repeat: no-repeat;
+}
+
+* {
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+blockquote {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+@layer base {
+  body {
+    @apply text-neutral-900 bg-gray-100;
+    @apply dark:text-white dark:bg-neutral-900;
+    @apply 2xl:bg-fixed;
+    @apply bg-[url('/background.png')];
+  }
+
+  h1, h2, h3 {
+    @apply font-sans font-black;
+  }
+
+  h2 {
+    @apply mt-16 mb-4 pb-3 border-b-2 border-b-neutral-300 dark:border-b-slate-600;
+    @apply text-2xl text-sky-500 dark:text-sky-500;
+  }
+
+  h3 {
+    @apply mt-14 mb-4 w-fit px-4;
+    @apply font-bold;
+    @apply text-xl leading-6;
+    @apply bg-gray-700 text-white;
+  }
+
+  p {
+    @apply leading-8;
+  }
+
+  strong {
+    @apply font-sans font-black;
+  }
+
+  a.textlink {
+    @apply font-sans font-bold text-sky-500;
+    @apply focus:opacity-50 outline-none;
+    @apply underline decoration-2 decoration-sky-500/50 hover:decoration-sky-500;
+  }
+
+  ul {
+    @apply list-disc;
+    @apply px-8 my-4;
+    @apply flex flex-col gap-3;
+  }
+
+  code {
+    @apply bg-gray-300 dark:bg-neutral-700;
+    @apply rounded-md;
+    @apply px-2 py-1;
+    @apply font-mono text-sm;
+  }
+}
+
+.toc-level {
+  @apply pl-8;
+}
+
+.toc-level-1 {
+  @apply pl-0
+}
