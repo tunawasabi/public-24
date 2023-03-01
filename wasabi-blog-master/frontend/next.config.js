@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['非公開']
+    domains: ['stcnk.s3.ap-northeast-1.amazonaws.com']
+  },
+  experimental: {
+    appDir: true
   },
   reactStrictMode: true,
 }

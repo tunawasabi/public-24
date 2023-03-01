@@ -1,4 +1,5 @@
 export default interface Article {
+    id: string,
     slug: string,
     eye_catch?: string,
     title: string,

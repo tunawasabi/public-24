@@ -18,7 +18,7 @@ type Props = {
 /**
  * コードブロック
  */
-export default function CodeBlock({ children, language, name }: Props): JSX.Element {
+export default function CodeBlock({ children, language }: Props): JSX.Element {
 
     // 言語が存在するかどうか判定して, ハイライト後の値を返す
     const raw = hljs.highlight(children,
@@ -37,6 +37,7 @@ export default function CodeBlock({ children, language, name }: Props): JSX.Elem
             .use(rehypeReact, { createElement, Fragment })
             .process(raw)
             .then(e => setResult(e.result))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <code className="hljs mb-10">

@@ -9,7 +9,7 @@ import { SubmitHandler, SubmitErrorHandler, useForm, UseFormRegisterReturn } fro
 import Head from "next/head";
 import { createHash } from 'crypto';
 import { authOptions } from '../../api/auth/[...nextauth]'
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 import Link from "next/link";
 
 const InputField: React.FC<
@@ -30,19 +30,17 @@ export const EditPage: NextPage<Article> = (article) => {
 
     // フォームの入力が有効な時
     const onSubmit: SubmitHandler<Article> = async (article, e) => {
-        e.preventDefault(); // フォームの再送信を防ぐ
+        e?.preventDefault(); // フォームの再送信を防ぐ
         setError(false);
         setMessage('progress');
 
         // 鍵の暗号化
-        const hash = createHash('sha256');
-        hash.update('yakiniku');
         const response = await fetch('/api/submit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ article: article, key: hash.digest('hex').toString() }),
+            body: JSON.stringify({ article: article }),
         })
 
         const result = await response.json();
@@ -66,7 +64,7 @@ export const EditPage: NextPage<Article> = (article) => {
     // メッセージ表示コンポーネント
     const MessageAlert = () => {
         if (!message) return null
-        else if (message == 'progress') return <>&quot待ってね&quot</>
+        else if (message == 'progress') return <>待ってね</>
         else if (!message.startsWith('200')) return <>{message}</>
         return <>{message}</>
     }
@@ -111,6 +109,7 @@ export const EditPage: NextPage<Article> = (article) => {
                 main={
                     <form>
                         <h1 className="text-4xl">{article.title == '' ? '新規投稿' : `「${watch('title')}」を編集中！`}</h1>
+                        <div>記事ID: {article.id}</div>
                         <div className="flex flex-col gap-2">
                             <h3>メタ情報</h3>
                             <PostDate created={article.created_date} lastUpdated={article.last_updated_date} />
@@ -167,15 +166,16 @@ export const EditPage: NextPage<Article> = (article) => {
                         </div>
                     </form>
                 } />
-        </div>);
+        </div>
+    );
 }
 export default EditPage;
 
 export const getServerSideProps: GetServerSideProps<Article, Params, Article> = async (
     { req, res, params }
 ) => {
-    const session = await unstable_getServerSession(req, res, authOptions)
-    const slug = params.slug;
+    const session = await getServerSession(req, res, authOptions)
+    const slug = params?.slug;
 
     // 認証
     if (session?.user.id != '807572778148298792') {
@@ -188,6 +188,7 @@ export const getServerSideProps: GetServerSideProps<Article, Params, Article> = 
     if (slug == 'new') {
         return {
             props: {
+                id: '',
                 title: '',
                 slug: '',
                 content: '',
@@ -199,7 +200,7 @@ export const getServerSideProps: GetServerSideProps<Article, Params, Article> = 
     }
 
     // スラッグが指定されている場合, 記事を探す
-    const rawdata = await fetchArticle(slug);
+    const rawdata = await fetchArticle(slug!);
 
     if (!rawdata) return {
         notFound: true,

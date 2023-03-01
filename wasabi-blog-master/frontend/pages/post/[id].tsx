@@ -7,6 +7,7 @@ import Markdown from '../../components/Markdown';
 import ArticleView from '../../components/post/ArticleView';
 import SingleView from '../../components/SingleView';
 import Tags from '../../components/TagList';
+import ColoredButton from '../../components/util/button';
 import { fetchArticle } from '../../src/lib/db';
 import Article from '../../src/lib/types/Article';
 
@@ -37,7 +38,7 @@ const ArticlePage: NextPage<Article> = (props) => {
                             href={`/ctrl/edit/${props.slug}`}
                             prefetch={false}
                         >
-                            <button className="bg-blue-600 px-8 py-2 rounded-md shadow-md transition hover:opacity-50">編集</button>
+                            <ColoredButton>編集</ColoredButton>
                         </Link>
                     </div>
                     : null}
@@ -53,7 +54,14 @@ export default ArticlePage;
 export const getStaticProps: GetStaticProps<Article, Params, Article> = async (
     { params }
 ) => {
-    const id = params.id;
+    const id = params?.id;
+
+    if (!id) {
+        return {
+            notFound: true,
+        };
+    }
+
     const rawdata = await fetchArticle(id);
 
     if (!rawdata || !rawdata.published) {

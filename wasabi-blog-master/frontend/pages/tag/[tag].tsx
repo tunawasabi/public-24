@@ -8,6 +8,7 @@ import XLink from '../../components/util/XLink';
 import { fetchArticleWithTag } from '../../src/lib/db';
 import Article from '../../src/lib/types/Article';
 import Tag from '../../src/lib/types/Tag';
+import excludeDraftArticle from '../../src/util/exclude-draft';
 
 const TagPage = (props: Props) => {
     return (<>
@@ -45,11 +46,12 @@ const ArticleList: React.FC<Props> = ({ tag, articles }) => {
 export const getStaticProps: GetStaticProps<Props, Params> = async (
     { params }
 ) => {
-    const tag = params.tag;
+    const tag = params?.tag!;
+    const articles = excludeDraftArticle(await fetchArticleWithTag(tag));
 
     try {
         return {
-            props: { tag: { id: 0, name: tag }, articles: (await fetchArticleWithTag(tag)) },
+            props: { tag: { id: 0, name: tag }, articles: articles },
             revalidate: 10,
         };
     } catch {

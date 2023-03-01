@@ -5,8 +5,8 @@ import DiscordProvider from "next-auth/providers/discord"
 export const authOptions: NextAuthOptions = {
     providers: [
         DiscordProvider({
-            clientId: process.env.OAUTH_CLIENTID,
-            clientSecret: process.env.OAUTH_SECRET,
+            clientId: process.env.OAUTH_CLIENTID!,
+            clientSecret: process.env.OAUTH_SECRET!,
             profile(profile) {
                 return {
                     id: profile.id,

@@ -18,7 +18,7 @@ function MyApp(props: AppProps) {
           とれいと魔術書
         </Link>
       </div>
-      <Link href="/tag" className="ml-auto flex items-center justify-center px-2 gap-2 transition hover:opacity-80">
+      <Link href="/tag" className="ml-auto flex items-center justify-center px-4 gap-2 transition hover:opacity-50">
         タグ一覧
       </Link>
     </header>

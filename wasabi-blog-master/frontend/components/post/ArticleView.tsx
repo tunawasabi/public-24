@@ -12,7 +12,7 @@ const ArticleView: React.FC<Props> = (props) => {
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-2">
                         <H1>{props.title}</H1>
-                        <PostDate created={props.createdDate} lastUpdated={props.lastUpdatedDate} />
+                        <PostDate created={props.createdDate!} lastUpdated={props.lastUpdatedDate!} />
                     </div>
                     <div>
                         {props.children}

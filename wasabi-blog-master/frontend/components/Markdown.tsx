@@ -41,18 +41,18 @@ export default function Markdown({ children }) {
 
         a: ({ className, ...props }) => {
             // 目次のリンク
-            if (className?.indexOf('toc-link') >= 0) {
+            if (className?.includes('toc-link')) {
                 return <a className="underline decoration-2
                 text-neutral-600
                  dark:text-neutral-300 decoration-neutral-300/50 hover:decoration-neutral-300" {...props} />
             }
 
             // 見出しのリンク
-            if (className?.indexOf('heading-link') >= 0) {
-                return <a className="hover:un-+derline decoration-2-" {...props} />
+            if (className?.includes('heading-link')) {
+                return <a className="hover:underline decoration-2" {...props} />
             }
 
-            return <XLink href={props.href} {...props} />
+            return <XLink href={props.href!} {...props} />
         },
 
         img: (props) => {
@@ -67,7 +67,7 @@ export default function Markdown({ children }) {
                 <div className='relative aspect-video bg-neutral-800 my-5 w-screen left-1/2 -translate-x-1/2 md:w-full md:left-0 md:translate-x-0'>
                     <Image src={src}
                         fill
-                        alt={alt}
+                        alt={alt ?? ""}
                         className="object-contain"
                     />
                 </div>
