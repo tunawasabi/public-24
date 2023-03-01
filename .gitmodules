@@ -1,0 +1,3 @@
+[submodule "wasabi-blog"]
+	path = wasabi-blog
+	url = https://github.com/tunawasabi/wasabi-blog.git
