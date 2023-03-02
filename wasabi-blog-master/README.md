@@ -12,7 +12,7 @@
 ![](image/sc4.png)
 
 ## Deployment
-https://wasabi-blog-qn6temid2-wasabi256.vercel.app/post/touch-tauri-windows
+https://wasabi-blog-apek7odr4-wasabi256.vercel.app/post/touch-tauri-windows
 ダミー記事
 
 ソースコード内のデータベースへのURLなどは削除しています。
