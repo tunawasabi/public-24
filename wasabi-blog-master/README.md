@@ -9,6 +9,7 @@
 ![](image/sc1.png)
 ![](image/sc2.png)
 ![](image/sc3.png)
+![](image/sc4.png)
 
 ## Deployment
 https://wasabi-blog-qn6temid2-wasabi256.vercel.app/post/touch-tauri-windows
