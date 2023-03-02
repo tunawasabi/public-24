@@ -64,7 +64,7 @@ export default function Markdown({ children }) {
                 || !(src.startsWith('/') || src.startsWith('https://'))) return null;
 
             const c = (<div className="flex flex-col gap-1">
-                <div className='relative aspect-video bg-neutral-800 my-5 w-screen left-1/2 -translate-x-1/2 md:w-full md:left-0 md:translate-x-0'>
+                <div className='relative aspect-video bg-white dark:bg-neutral-800 my-5 w-screen left-1/2 -translate-x-1/2 md:w-full md:left-0 md:translate-x-0'>
                     <Image src={src}
                         fill
                         alt={alt ?? ""}
@@ -133,7 +133,7 @@ export default function Markdown({ children }) {
             [rehypeToc, {
                 customizeTOC: (toc) => {
                     return h('div', { className: "text-sm leading-6 my-10 xl:my-0 xl:sticky xl:top-0" },
-                        h('div', { className: "xl:absolute xl:-left-72 2xl:-left-96 xl:w-64 2xl:w-72 xl:h-screen overflow-scroll" },
+                        h('div', { className: "xl:absolute xl:-left-72 2xl:-left-96 xl:w-64 2xl:w-72 xl:h-screen overflow-scroll hidden-scrollbar" },
                             h('div', { className: "xl:py-8" }, [
                                 (h('div', { className: "py-2 xl:sticky xl:top-0 xl:pt-1 xl:backdrop-blur-2xl font-bold border-t-2 border-slate-700" },
                                     '目次 Table of Contents'

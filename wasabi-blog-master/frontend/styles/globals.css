@@ -79,3 +79,13 @@ blockquote {
 .toc-level-1 {
   @apply pl-0
 }
+
+@layer utilities {
+  .hidden-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hidden-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -19,7 +19,8 @@ export const Submit = async (req: NextApiRequest, res: NextApiResponse) => {
         await insertArticle(article);
 
         await res.revalidate(`/post/${article.slug}`);
-        res.json({ data: 'you win!' });
+        await res.revalidate(`/`)
+        res.json({ data: 'you win!', revalidated: true });
     } catch (e) {
         res.status(400).json({ data: e.toString() });
     }

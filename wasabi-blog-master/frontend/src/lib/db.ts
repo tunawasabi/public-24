@@ -33,6 +33,24 @@ export async function fetchArticle(slug: string): Promise<Article | null> {
 }
 
 /**
+ * 全ての記事を取得します
+ */
+export async function fetchAllArticle(include_draft: boolean): Promise<Article[]> {
+    const collection = await connect<ArticleDocument>('articles');
+
+    const query = include_draft ? {} : {
+        published: true
+    }
+
+    const res = await collection
+        .find(query)
+        .map(doc => toArticle(doc))
+        .toArray();
+
+    return JSON.parse(JSON.stringify(res));
+}
+
+/**
  * タグがついている記事を取得します。
  */
 export async function fetchArticleWithTag(tag: string): Promise<Article[]> {

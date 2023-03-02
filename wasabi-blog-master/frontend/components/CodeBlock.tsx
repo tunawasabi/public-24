@@ -1,3 +1,4 @@
+'use client';
 // CodeBloc.tsx
 // ----
 // Syntax Highlighter

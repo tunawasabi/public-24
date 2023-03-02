@@ -1,6 +1,5 @@
 'use client';
-
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -11,7 +10,7 @@ export default function Footer() {
         <div className="ml-auto bg-gray-400">
             {
                 status === 'authenticated'
-                    ? <Link href="/ctrl" scroll={false}>管理画面</Link>
+                    ? <Link href="/ctrl#" scroll={true}>管理画面</Link>
                     : <button onClick={() => signIn('discord')}>ADMIN</button>
             }
         </div>

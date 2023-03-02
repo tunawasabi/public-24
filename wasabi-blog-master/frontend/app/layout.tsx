@@ -20,7 +20,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     const Header = () => {
         return <header className="flex h-12 text-neutral-900 dark:text-white">
             <div className="bg-gradient-to-r from-blue-600 to-violet-700 transition hover:opacity-80 text-xl text-white">
-                <Link href="/" className="flex items-center justify-center h-full w-full px-8 gap-2 font-sans font-black">
+                <Link href="/" className="flex items-center justify-center h-full w-full px-8 gap-2 font-sans font-black" prefetch={false}>
                     とれいと魔術書
                 </Link>
             </div>

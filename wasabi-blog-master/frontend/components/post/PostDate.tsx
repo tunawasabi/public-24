@@ -1,3 +1,5 @@
+'use client';
+
 import dateFormat from 'dateformat';
 import { useEffect, useState } from 'react';
 
